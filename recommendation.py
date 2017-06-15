@@ -98,7 +98,8 @@ class Recommendation:
     def get_similarity(user_a, user_b):
         s = set(user_a.good_ratings + user_a.bad_ratings + user_a.neutral_ratings + user_b.good_ratings + user_b.bad_ratings + user_b.neutral_ratings)
         ratings = 0
-        for elmt in set:
+        liste = list(s)
+        for elmt in liste:
             scoreA = get_score(user_a,elmt)
             scoreB = get_score(user_b,elmt)
             ratings += scoreA* scoreB
