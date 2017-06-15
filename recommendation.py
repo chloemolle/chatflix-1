@@ -74,7 +74,7 @@ class Recommendation:
 
     # Pose une question à l'utilisateur
     def ask_question(self, user):
-        return "Vous aimez les films ?"
+        return "Bonjour, voulez-vous commencer   ?"
 
     # Calcule la similarité entre 2 utilisateurs
     @staticmethod
