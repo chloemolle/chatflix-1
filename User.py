@@ -58,7 +58,7 @@ class User:
 
     # Donne la norme de l'utilisateur
     def get_norm(self):
-        return (len(self.good_ratings) + len(self.bad_ratings) + len(self.neutral_ratings))
+        return (len(self.good_ratings) + len(self.bad_ratings) + len(self.neutral_ratings) +1)
 
     # Donne un vecteur avec les notations normalisées de l'utilisateur
     def get_normalised_cluster_notations(self):
