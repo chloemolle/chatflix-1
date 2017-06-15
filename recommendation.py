@@ -100,8 +100,8 @@ class Recommendation:
         ratings = 0
         liste = list(s)
         for elmt in liste:
-            scoreA = get_score(user_a,elmt)
-            scoreB = get_score(user_b,elmt)
+            scoreA = self.get_score(user_a,elmt)
+            scoreB = self.get_score(user_b,elmt)
             ratings += scoreA* scoreB
         return ratings/user_a.get_norm()
 
