@@ -5,6 +5,7 @@ from random import randint
 
 import numpy as np
 from sklearn.cluster import KMeans
+import operator
 
 from movielens import load_movies, load_simplified_ratings
 
@@ -68,8 +69,21 @@ class Recommendation:
             movies_list.append(self.movies[movie_number].title)
         return movies_list
 
+
+    # Calcule la similarité entre un utilisateur et tous les utilisateurs de tests
+    def compute_all_similarities(self, user):
+        user_similarities = {}
+        for us, value in self.users.items():
+            if value is not user:
+                user_similarities[us] = self.get_similarity(user,value)
+        return user_similarities
+
+
     # Affiche la recommandation pour l'utilisateur
     def make_recommendation(self, user):
+        tab_recup = self.compute_all_similarities(user)
+        tab_trie = sorted(tab_recup.items(),key = operator.itemgetter(1))
+        print(tab_trie)
         return "Vous n'avez pas de recommandation pour le moment."
 
     # Pose une question à l'utilisateur
@@ -79,10 +93,21 @@ class Recommendation:
         return("As tu aimé " + self.movies[i].title)
 
     # Calcule la similarité entre 2 utilisateurs
+    #c'est user_a qui calcule sa similarité avec user_b
     @staticmethod
     def get_similarity(user_a, user_b):
-        return 0
+        s = set(user_a.good_ratings + user_a.bad_ratings + user_a.neutral_ratings + user_b.good_ratings + user_b.bad_ratings + user_b.neutral_ratings)
+        ratings = 0
+        for elmt in set:
+            scoreA = get_score(user_a,elmt)
+            scoreB = get_score(user_b,elmt)
+            ratings += scoreA* scoreB
+        return ratings/user_a.get_norm()
 
-    # Calcule la similarité entre un utilisateur et tous les utilisateurs de tests
-    def compute_all_similarities(self, user):
-        return []
+    def get_score(user,elmt):
+        if elmt in user.good_ratings:
+            return(1)
+        elif elmt in user.bad_ratings:
+            return(-1)
+        else:
+            return(0)

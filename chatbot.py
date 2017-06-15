@@ -16,6 +16,7 @@ class Bot(object):
         user.give_message(message)
 
         # Si le chatbot doit faire une recommandation ou pas
+        self.recommendation.make_recommendation(user)
         if user.should_make_recommendation():
             return self.recommendation.make_recommendation(user)
         else:
@@ -27,7 +28,6 @@ class Bot(object):
             # Si l'utilisateur parle pour la première fois, affiche un message d'intro
             if not user.has_been_asked_a_question():
                 intro = "Bonjour ! Je vais vous poser des questions puis vous faire une recommandation.\n"
-
             else:
                 if (message == "oui"):
                     user.answer_yes()
