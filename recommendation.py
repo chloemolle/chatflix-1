@@ -95,7 +95,7 @@ class Recommendation:
     # Calcule la similarité entre 2 utilisateurs
     #c'est user_a qui calcule sa similarité avec user_b
     @staticmethod
-    def get_similarity(user_a, user_b):
+    def get_similarity(self, user_a, user_b):
         s = set(user_a.good_ratings + user_a.bad_ratings + user_a.neutral_ratings + user_b.good_ratings + user_b.bad_ratings + user_b.neutral_ratings)
         ratings = 0
         liste = list(s)
