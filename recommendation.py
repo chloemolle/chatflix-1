@@ -74,9 +74,8 @@ class Recommendation:
 
     # Pose une question à l'utilisateur
     def ask_question(self, user):
-        liste = ["Harry Potter","Seigneur des anneaux"]
-        i = randint(0,len(liste)-1)
-        return("As tu aimé " + liste[i])
+        i = randint(0,len(self.movies_list)-1)
+        return("As tu aimé " + self.movies[i].title)
 
     # Calcule la similarité entre 2 utilisateurs
     @staticmethod
